@@ -1,0 +1,20 @@
+name: venera_cli
+description: Command-line tool for Venera comic sources.
+version: 2.0.0
+publish_to: none
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  args: ^2.7.0
+  venera_core:
+    path: ../venera_core
+
+executables:
+  venera: venera
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.25.6
