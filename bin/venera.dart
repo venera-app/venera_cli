@@ -9,7 +9,7 @@ const apiVersion = '2.0.0';
 
 Future<void> main(List<String> arguments) async {
   final cli = VeneraCli(stdout, stderr, stdin);
-  exitCode = await cli.run(arguments);
+  exit(await cli.run(arguments));
 }
 
 class VeneraCli {
