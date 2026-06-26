@@ -10,7 +10,9 @@ environment:
 dependencies:
   args: ^2.7.0
   venera_core:
-    path: ../venera_core
+    git:
+      url: https://github.com/venera-app/venera_core.git
+      ref: d2adfc0dc872ba5de9c504ed5e6ad3f464103259
 
 executables:
   venera: venera
