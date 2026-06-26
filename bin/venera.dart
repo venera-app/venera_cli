@@ -4,7 +4,8 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:venera_core/venera_core.dart';
 
-const version = '2.0.0';
+const version = '1.0.0';
+const apiVersion = '2.0.0';
 
 Future<void> main(List<String> arguments) async {
   final cli = VeneraCli(stdout, stderr, stdin);
@@ -28,7 +29,7 @@ class VeneraCli {
         return 0;
       }
       if (results.flag('version')) {
-        out.writeln('venera $version');
+        out.writeln('venera cli $version (api version $apiVersion)');
         return 0;
       }
       final rest = results.rest;
@@ -95,7 +96,7 @@ class VeneraCli {
     }
     await ComicSourceManager().init(
       dataPath: dataDir.path,
-      appVersion: version,
+      appVersion: apiVersion,
     );
     _coreInitialized = true;
   }
