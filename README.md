@@ -8,6 +8,7 @@ Command-line tool for loading Venera comic sources and fetching comic data.
 venera -v
 venera source list
 venera source load [-f] <filepath/url>
+venera source validate <filepath>
 venera source update [key]
 venera source delete <key>
 

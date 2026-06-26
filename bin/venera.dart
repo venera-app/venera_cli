@@ -112,6 +112,8 @@ class VeneraCli {
         return _listSources();
       case 'load':
         return await _loadSource(arguments.skip(1).toList());
+      case 'validate':
+        return await _validateSource(arguments.skip(1).toList());
       case 'update':
         return await _updateSource(arguments.skip(1).toList());
       case 'delete':
@@ -135,6 +137,37 @@ class VeneraCli {
       );
     }
     return 0;
+  }
+
+  Future<int> _validateSource(List<String> arguments) async {
+    if (arguments.length != 1) {
+      err.writeln('Usage: venera source validate <filepath>');
+      return 64;
+    }
+    final path = arguments.single;
+    final file = File(path);
+    if (!await file.exists()) {
+      err.writeln('Source file does not exist: $path');
+      return 1;
+    }
+    if (await FileSystemEntity.isDirectory(path)) {
+      err.writeln('Source path is a directory: $path');
+      return 1;
+    }
+
+    ComicSource? source;
+    try {
+      source = await ComicSourceParser().parse(
+        await file.readAsString(),
+        file.absolute.path,
+      );
+      out.writeln('Valid ${source.key} (${source.name}) ${source.version}');
+      return 0;
+    } finally {
+      if (source != null) {
+        ComicSourceManager().remove(source.key);
+      }
+    }
   }
 
   Future<int> _loadSource(List<String> arguments) async {
@@ -571,6 +604,7 @@ class VeneraCli {
     target.writeln('Commands:');
     target.writeln('  source list');
     target.writeln('  source load [-f] <filepath/url>');
+    target.writeln('  source validate <filepath>');
     target.writeln('  source update [key]');
     target.writeln('  source delete <key>');
     target.writeln('  <source-key> account');
@@ -589,6 +623,7 @@ class VeneraCli {
     out.writeln('Commands:');
     out.writeln('  list');
     out.writeln('  load [-f] <filepath/url>');
+    out.writeln('  validate <filepath>');
     out.writeln('  update [key]');
     out.writeln('  delete <key>');
   }
