@@ -12,7 +12,7 @@ dependencies:
   venera_core:
     git:
       url: https://github.com/venera-app/venera_core.git
-      ref: d2adfc0dc872ba5de9c504ed5e6ad3f464103259
+      ref: 50711c98e1676a6d5d4bb540c020a91a2bc0d9e5
 
 executables:
   venera: venera

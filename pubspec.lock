@@ -468,9 +468,11 @@ packages:
   venera_core:
     dependency: "direct main"
     description:
-      path: "../venera_core"
-      relative: true
-    source: path
+      path: "."
+      ref: "50711c98e1676a6d5d4bb540c020a91a2bc0d9e5"
+      resolved-ref: "50711c98e1676a6d5d4bb540c020a91a2bc0d9e5"
+      url: "https://github.com/venera-app/venera_core.git"
+    source: git
     version: "1.0.0"
   vm_service:
     dependency: transitive
